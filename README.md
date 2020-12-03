@@ -1,5 +1,8 @@
 # landing-page
-After clone
+# After clone
 
-Run 'npm install' in terminal
-Rum 'grunt' in terminal for run project
+# install dependencies
+$ npm install
+
+# run server
+$ grunt
