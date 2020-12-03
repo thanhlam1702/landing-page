@@ -1,4 +1,7 @@
 # landing-page
+## Build Setup
+
+```bash
 # After clone
 
 # install dependencies
