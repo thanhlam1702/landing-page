@@ -1,0 +1,593 @@
+
+.homepage{
+    .product-view{
+        padding: 90px 0;
+    }
+}
+
+//btn slider
+.btn-slide{
+    @include flex(center,center);
+    border: 2px solid $c-white;
+    margin: 40px 0;
+    padding: 16px 52px;
+    overflow: hidden;
+    position: relative;
+    letter-spacing: 2px;
+    @include text(1.4rem, pnr, normal, $c-white, uppercase);
+    @include btn-hover-style();
+    &:hover > i{
+        transform: translateX(20px);
+        transition: all .5s $cubic-bezier;
+    }
+    span, i{
+        z-index: 10;
+    }
+    i{
+        transition: all .5s $cubic-bezier;
+        margin-left: 20px;
+    }
+}
+.slider{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 832px;
+    overflow: hidden;
+    &__images{
+        width: 100%;
+        height: 100%;
+        &-item{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            .text{
+                position: absolute;
+                flex-direction: column;
+                @include flex-align(center);
+                @include middle-item();
+                z-index: 10;
+                .title{
+                    @include text(8.333rem, pnb, normal, $color-default, uppercase);
+                    letter-spacing: 20px;
+                }
+            }
+            .img{
+                width: 1600px;
+                height: 814px;
+                position: absolute;
+                object-fit: cover;
+                @include middle-item();
+            }
+        }
+    }
+    &__bottom{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding-bottom: 30px;
+        .container-fluid{
+            display: flex;
+        }
+        .paging{
+            @include flex-align(center);
+            span{
+                @include text(4.381rem, pnb, normal, $color-default, unset);
+                letter-spacing: 10px;
+            }
+            &::before{
+                content: "";
+                width: 42px;
+                height: 4px;
+                background: $color-default;
+                margin-right: 14px;
+                
+            }
+            .dotted{
+                @include flex-align(center);
+                li{
+                    height: 8px;
+                    width: 8px;
+                    border-radius: 50%;
+                    background: $color-default;
+                    opacity: 0.2;
+                    margin: 0 8px;
+                    transition: $t $cubic-bezier;
+                    cursor: pointer;
+                    &:hover, &.active{
+                        opacity: 1;
+                        transition: $t $cubic-bezier;
+                    }
+                }
+            }
+        }
+        .mouse{
+            @include flex-align(center);
+            flex-direction: column;
+            position: absolute;
+            bottom: 0px;
+            height: 150px;
+            @include middle-item-x();
+            i{
+                margin-top: 30px;
+            }
+            .mouse__arrow{
+                animation: arrowMove 3s infinite;
+            }
+        }
+        .control{
+            margin-left: auto;
+            @include flex-justify(flex-end);
+            &__btn{
+                border: 2px solid $c-white;
+                padding: 10px 20px;
+                @include flex(center, center);
+                position: relative;
+                cursor: pointer;
+                &:first-child{
+                    margin-right: -2px;
+                }
+                // Hiệu ứng chuyển arrow page
+                // 2 thẻ img html và div ảo before để chứa icon arrow
+                i{
+                    position: relative;
+                    z-index: 9;
+                    img{
+                        transform: translateX(0%) scale(1);
+                        transition: $t $cubic-bezier;
+                    }
+                    &::before{
+                        content: '';
+                        background: url('/img/right-arrow.svg') no-repeat;
+                        background-size: contain;
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        z-index: 10;
+                        transform: translateX(-100%) scale(0);
+                        transition: $t $cubic-bezier;
+                    }
+                }
+                &::before{
+                    content: '';
+                    background: $color-default;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    transition: $t $cubic-bezier;
+                    transform: scaleX(0);
+                    transform-origin: center left;
+                }
+                &:first-child::before{
+                    transform-origin: center right;
+                }
+                &:hover::before{
+                    transform: scaleX(1);
+                    transition: $t $cubic-bezier;
+                }
+                &:hover i img{
+                    transform: translateX(100%) scale(0);
+                    transition: $t $cubic-bezier;
+                }
+                &:hover i::before {
+                    transform: translateX(0%) scale(1);
+                    transition: $t $cubic-bezier;
+                }
+            }
+            //Quay chiều icon
+            .--prev i{
+                transform: rotate(-180deg) scale(1);
+            }
+        }
+        
+    }
+}
+
+
+@keyframes arrowMove{
+    0% {    
+        transform: translateY(-20px);
+        transition: $t $cubic-bezier;;
+    }
+    100% {  
+        transform: translateY(10px);
+        transition: $t $cubic-bezier;;    
+    }
+    // 100% {transform: translateY(-20px);}
+}
+
+.product{
+    &__item{
+        &:last-child{
+            flex-direction: row-reverse;
+            text-align: end;
+            .--text-box{
+                align-items: flex-end;
+                padding: 0 96px 0 0;
+                .title::before{
+                    left: initial;
+                    right: -96px;
+                }
+            }
+        }
+    }
+}
+
+.quality{
+    &__text{
+        align-items: center;
+        .title{
+            &::before{
+                content: '';
+                width: 36px;
+                height: 2px;
+                background: $color-default;
+                position: absolute;
+                bottom: 15px;
+                @include middle-item-x();
+            }
+        }
+        .description{
+            width: 464px;
+            text-align: center;
+            line-height: 20.86px;
+            letter-spacing: 0.2px;
+        }
+    }
+    .videos{
+        @include flex(space-around, center);
+        &__item{
+            &-img{
+                height: 204px;
+                width: 204px;
+                position: relative;
+                margin: 42px 0;
+                transition: all $t $cubic-bezier;
+                .img{
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    position: relative;
+                    img{
+                        min-width: 100%;
+                        min-height: 100%;
+                        max-width: 204px;
+                        object-fit: cover;
+                        position: absolute; 
+                        transition: all $t $cubic-bezier;
+                        @include middle-item();
+                    }
+                }
+                i{
+                    height: 56px;
+                    width: 56px;
+                    background: $color-btn-play;
+                    border-radius: 50%;
+                    position: absolute;
+                    z-index: 10;
+                    display: grid;
+                    place-items: center;
+                    transition: all $t $cubic-bezier;
+                    @include middle-item();
+                    cursor: pointer;
+                    img{
+                        width: 20px;
+                        height: 20px;
+                    }
+                    // &:hover{
+                    //     transform: translate(-50%, -50%) scale(1.2);
+                    //     transition: all $t
+                    // }
+                }
+                &:hover{
+                    transform: scale(0.9);
+                    transition: all $t $cubic-bezier;
+                }
+                &:hover .img img{
+                    transform: translate(-50%, -50%) scale(1.3);
+                    transition: all $t $cubic-bezier;
+                }
+                &::before{
+                    content: '';
+                    height: 226px;
+                    width: 226px;
+                    border: 1px solid #e7e7e7;
+                    border-radius: 50%;
+                    position: absolute;
+                    @include middle-item();
+                }
+                &::after{
+                    content: '';
+                    height: 2px;
+                    width: 20px;
+                    background: $color-default;
+                    @include middle-item-x();
+                    bottom: -30px;
+                    position: absolute;
+                }
+            }
+            &-text{
+                font-size: 1.6rem;
+                text-align: center;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+.watch{
+    background: url('/img/banner-video.jpg') no-repeat center;
+    background-size: cover;
+    height: 640px;
+    width: 100%;
+    .container{
+        height: 100%;
+    }
+    &__text{
+        height: 100%;
+        .title{
+            width: 436px;
+            color: $color-default;
+            line-height: 50px;
+            letter-spacing: 2.5px;
+        }
+        .description{
+            width: 554px;
+            color: $c-white;
+            line-height: 22px;
+            margin: 46px 0;
+        }
+        .btn-watch{
+            color: $c-white;
+            border: 1px solid $c-white;
+            position: relative;
+            cursor: pointer;
+            letter-spacing: 2px;
+            padding: 14px 64px;
+            @include flex(center, center);
+            @include text(1.167rem, pnb, normal, $c-white, uppercase);
+            i{
+                height: 20px;
+                width: 20px;
+                z-index: 10;
+                margin-right: 12px;
+                transition: all .5s $cubic-bezier;
+            }
+            span{
+                z-index: 10;
+            }
+            &:hover i{
+                transform: rotate(360deg);
+                transition: all .5s $cubic-bezier
+            }
+            @include btn-hover-style();
+        }
+    }
+}
+
+.about{
+    padding: 90px 0;
+    & &__text{
+        & .title{
+            &::before{
+                left: -144px;
+            }
+        }
+    }
+    .--box{
+        margin-bottom: initial;
+    }
+}
+
+.galley{
+    background: $c-black;
+    padding: 46px 0;
+    &__text{
+        color: $c-white;
+        .description{
+            width: 440px;
+        }
+    }
+    .list__img{
+        display: grid;
+        padding: 50px 0;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 200px;
+        grid-gap: 10px;
+        &-item{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            img{
+                min-width: 100%;
+                min-height: 100%;
+                max-width: 318px;
+                object-fit: cover;
+                position: absolute;
+                filter: grayscale(1);
+                transition: $t $cubic-bezier;
+                z-index: 1;
+                @include middle-item();
+            }
+            &::before{
+                content: '';
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: all $t $cubic-bezier;
+                z-index: 3;
+
+            }
+            &:hover img{
+                filter: grayscale(0);
+            }
+            &:hover::before{
+                background: transparent;
+            }
+            &:nth-child(2){
+                grid-column-start: 2;
+                grid-column-end: 3;
+                grid-row-start: 1;
+                grid-row-end: 3;
+            }
+        }
+    }
+}
+
+.news{
+    padding-top: 33px;
+    &__text{
+        .description{
+            width: 440px;
+            line-height: 22px;
+        }
+    }
+    .list{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 18px;
+        padding: 42px 0;
+        &__item{
+            max-width: 310px;
+            display: flex;
+            flex-direction: column;
+            color: $c-black;
+            &-img{
+                width: 100%;
+                height: 200px;
+                position: relative;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    @include middle-item();
+                }
+            }
+            .card-title{
+                font-size: 1.8rem;
+                text-transform: uppercase;
+                line-height: 22px;
+                letter-spacing: .2px;
+                width: 88%;
+                padding: 48px 0 24px 0;
+                position: relative;
+                &::before{
+                    content: '';
+                    width: 84px;
+                    height: 4px;
+                    left: 0;
+                    top: 20px;
+                    background: $color-default;
+                    transition: $t $cubic-bezier;
+                    position: absolute;
+                }
+            }
+            .card-description{
+                font-size: 1.5rem;
+                line-height: 20px;
+                letter-spacing: 0.25px;
+                margin-top: auto;
+                @include dot-para-text(3);
+            }
+            &:hover .card-title::before{
+                left: calc(100% + 13.63% - 84px);
+            }
+        }
+
+    }
+}
+
+.product-slider{
+    padding: 80px 0;
+    .list{
+        overflow: hidden;
+        @include flex-align(center);
+            img{
+                width: 100%;
+                height: 100%;
+            }
+    }
+}
+
+// responsive
+@media (max-width: 1199px){
+        
+}
+@media (max-width: 991px){
+    .slider {
+        & &__images {
+            &-item {
+                .text {
+                    .title {
+                        font-size: 6rem;
+                    }
+                    .btn-slide {
+                        margin: 20px 0;
+                        padding: 14px 46px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 767px){
+    .homepage .slider {
+        height: 400px;
+        &__images {
+            &-item {
+                .text {
+                    .title {
+                        font-size: 4rem;
+                        letter-spacing: 10px;
+                    }
+                    .btn-slide {
+                        margin: 10px 0;
+                        padding: 10px 20px;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+        &__bottom{
+            padding-bottom: 10px;
+            .paging{
+                span{
+                    font-size: 2rem;
+                    letter-spacing: 2px;
+                }
+                .dotted{
+                    li{
+                        height: 4px;
+                        width: 4px;
+                        margin: 0 4px;
+                    }
+                }
+                &::before{
+                    display: none;
+                }
+            }
+            .mouse{
+                height: 100px;
+            }
+            .control{
+                &__btn{
+                    padding: 0 8px;
+                    border: 1px solid $c-white;
+                }
+                .--prev{
+                    margin-right: -1px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 575px){
+    
+}

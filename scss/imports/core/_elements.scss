@@ -1,0 +1,40 @@
+
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+
+body{
+    max-width: $max-width;
+    margin: auto;
+    font-family: "pnr";
+}
+
+img{
+    vertical-align: middle;
+}
+
+a{
+   
+    text-decoration: none;
+}
+button {
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+
+.bg-scroll{
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.icon {
+    width: 24px;
+    img{
+        height: 100% ;
+        width: 100%;
+    }
+}
+

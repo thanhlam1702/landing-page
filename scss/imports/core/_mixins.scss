@@ -1,0 +1,94 @@
+// Mixins file
+
+
+// canh giua tren va duoi
+@mixin middle-item{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// canh giua theo truc x
+@mixin middle-item-x{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+// canh giua theo truc y
+@mixin middle-item-y{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+//Hover bar
+@mixin hover-bar{
+    &::before{
+        content: '';
+        position: absolute;
+        top: calc(50% + 20px);
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background: $color-default;
+        transition: all $t $cubic-bezier;
+        transform: scaleX(0);
+        transform-origin: center left;
+    }
+    &:hover::before{
+        transform: scaleX(1);
+        transform-origin: center right;
+        transition: all $t $cubic-bezier;
+    }
+}
+
+@mixin btn-hover-style{
+    &::before{
+        content: "";
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background: $color-default;
+        transform: scaleX(0);
+        transition: all $t $cubic-bezier;
+        transform-origin: center left;
+    }
+    &:hover::before{
+        transform: scaleX(1);
+        transition: all $t $cubic-bezier;
+        transform-origin: center right;
+    }
+}
+
+@mixin flex-justify($justify){
+    display: flex;
+    justify-content: $justify;
+}
+
+@mixin flex-align($align){
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex($justify, $align){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align
+}
+
+@mixin dot-para-text($column){
+    display: -webkit-box;
+    -webkit-line-clamp: $column;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// text
+
+@mixin text($size, $font-family, $line-height, $color, $transform) {
+    font-size: $size;
+    font-family: $font-family;
+    line-height: $line-height;
+    color: $color;
+    text-transform: $transform;
+}
