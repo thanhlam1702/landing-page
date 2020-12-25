@@ -6,8 +6,31 @@ $color-btn-play: #bdaa89;
 $c-white: #fff;
 $c-black: #000;
 
-$max-width: 1600px;
-$container-w: 1010px;
+$text-cl: #222;
+$text-black-cl: #000;
 
+$fz-text: 1.6rem;
+$lh-text: normal;
 $t: 0.4s;
 $cubic-bezier: cubic-bezier(.66,.17,.32,.8);
+
+$box-shadow-1: 0px 0px 10px 0px rgba(0,0,0,0.3);
+
+
+/*GRID - media queries breakpoints*/
+$xxs-min: 576px;
+$xs-min: 768px;
+$sm-min: 992px;
+$md-min: 1200px;
+$lg-min: 1600px;
+
+$xxs-max: ($xxs-min - 1);
+$xs-max: ($xs-min - 1);
+$sm-max: ($sm-min - 1);
+$md-max: ($md-min - 1);
+$lg-max: ($lg-min - 1);
+
+
+$max-width: 1920px;
+$container-max-width: $max-width;
+$container-w: 1010px;

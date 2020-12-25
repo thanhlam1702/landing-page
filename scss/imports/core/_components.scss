@@ -1,66 +1,64 @@
-
 //styles cua --box va text-box
-.--box{
-    @include flex-justify(space-between);
-        margin-bottom: 102px;
-        .--text-box{
-            padding: 0 0 0 96px;
-            .title{
-                &::before{
-                    content: "";
-                    width: 76px;
-                    height: 2px;
-                    position: absolute;
-                    top: 50%;
-                    left: -96px;
-                    background: #555555;
-                }
-            }
-            
-        }
-        .--img-box{
-            height: 330px;
-            width: 514px;
-            position: relative;
-            overflow: hidden;
-            transition: all $t $cubic-bezier;
-            img{
-                min-width: 100%;
-                min-height: 100%;
-                max-width: 514px;
+.--box {
+    @include flex(space-between, center);
+    margin-bottom: 102px;
+    .--text-box {
+        padding: 0 0 0 var(--pb-text-box);
+        .title {
+            &::before {
+                content: "";
+                width: 76px;
+                height: 2px;
                 position: absolute;
-                object-fit: cover;
-                transition: all $t $cubic-bezier;
-                @include middle-item();
-            }
-            &:hover{
-                transform: scale(0.9);
-                transition: all $t $cubic-bezier;
-            }
-            &:hover img{
-                transform: translate(-50%, -50%) scale(1.2);
-                transition: all $t $cubic-bezier;
+                top: 50%;
+                left: -96px;
+                background: #555555;
             }
         }
+    }
+    .--img-box {
+        height: var(--hProductImg);
+        width: var(--wProductImg);
+        position: relative;
+        overflow: hidden;
+        transition: all $t $cubic-bezier;
+        img {
+            min-width: 100%;
+            min-height: 100%;
+            max-width: var(--wProductImg);
+            position: absolute;
+            object-fit: cover;
+            transition: all $t $cubic-bezier;
+            @include middle-item();
+        }
+        &:hover {
+            transform: scale(0.9);
+            transition: all $t $cubic-bezier;
+        }
+        &:hover img {
+            transform: translate(-50%, -50%) scale(1.2);
+            transition: all $t $cubic-bezier;
+        }
+    }
 }
 
-.--text-box{
+.--text-box {
     @include flex(center, flex-start);
     flex-direction: column;
-    .title{
+    .title {
         font-size: 4rem;
         text-transform: uppercase;
         position: relative;
         line-height: 83.33px;
-        letter-spacing: .7px;
+        letter-spacing: 0.7px;
     }
-    .description{
+    .description {
         font-size: 1.6rem;
         width: 284px;
         @include dot-para-text(3);
         line-height: 20px;
     }
-    .btn{
+    .btn {
         color: $c-black;
         text-transform: uppercase;
         font-weight: 600;
@@ -68,12 +66,12 @@
         @include flex-align(center);
         position: relative;
         line-height: 58.33px;
-        i{
+        i {
             margin: 0 0 0 12px;
             @include flex-align(center);
         }
-        &::before{
-            content: '';
+        &::before {
+            content: "";
             width: 38px;
             height: 2px;
             background: $color-default;
@@ -82,10 +80,87 @@
             bottom: 15px;
             transition: all $t $cubic-bezier;
         }
-        &:hover::before{
+        &:hover::before {
             left: calc(100% - 38px);
             transition: all $t $cubic-bezier;
         }
+    }
+}
 
+// responsive
+@media (max-width: 1199px) {
+}
+
+@media (max-width: 991px) {
+    :root{
+        --wProductImg: 320px;
+        --hProductImg: 225px;
+        --pb-text-box: 0;
+    }
+    .homepage {
+        .--box {
+            margin-bottom: 50px;
+        }
+        .--text-box {
+            .title {
+                font-size: 2rem;
+                &::before {
+                    display: none;
+                }
+            }
+            .description {
+                font-size: 1.4rem;
+            }
+            .btn {
+                font-size: 1.2rem;
+                &::before {
+                    height: 1px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 767px) {
+    :root{
+        --wProductImg: 257px;
+        --hProductImg: 165px;
+        --pb-text-box: 0;
+    }
+}
+@media (max-width: 575px) {
+    :root{
+        --wProductImg: 100%;
+        --hProductImg: 250px;
+    }
+    .homepage {
+        .--box {
+            flex-direction: column;
+            margin-bottom: 20px;
+            .--text-box {
+                width: var(--wProductImg);
+                .title {
+                    font-size: 2rem;
+                    &::before {
+                        display: none;
+                    }
+                }
+                .description {
+                    font-size: 1.4rem;
+                }
+                .btn {
+                    font-size: 1.2rem;
+                    &::before {
+                        height: 1px;
+                    }
+                }
+            }
+            &:last-child {
+                flex-direction: column;
+                text-align: start;
+                .--text-box{
+                    align-items: flex-start;
+                }
+            }
+        }
     }
 }

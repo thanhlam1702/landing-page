@@ -12,9 +12,50 @@ footer{
             position: absolute;
             @include middle-item();
         }
-        .back-to-top{
-            text-transform: uppercase;
-            cursor: pointer;
+    
+    }
+}
+
+// responsive
+@media (max-width: 1199px) {
+    
+}
+@media (max-width: 991px) {
+    
+}
+@media (max-width: 767px) {
+    footer{
+        .copy, .back-to-top{
+            font-size: 0.8rem;
+        }
+        .logo-ft{
+            width: 120px;
+            a{
+                height: 100%;
+                width: 100%;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 575px) {
+    footer{
+        .copy, .back-to-top{
+            font-size: 0.6rem;
+        }
+        .logo-ft{
+            width: 80px;
+            a{
+                height: 100%;
+                width: 100%;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
         }
     }
 }

@@ -1,18 +1,20 @@
 header {
     width: 100%;
-    height: 80px;
+    height: var(--h-header);
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
     z-index: 300;
     background: rgba(0, 0, 0, 0);
     transition: all 0.6s $cubic-bezier;
+    transform: translateX(-50%);
 }
 
-.navbar {
+.container-fluid {
+    max-width: 1600px;
     height: 100%;
     position: relative;
-    @include flex-justify(space-between);
+    @include flex(space-between,center);
     .logo {
         display: flex;
         align-items: center;
@@ -24,15 +26,24 @@ header {
         @include middle-item();
         &__item {
             height: 100%;
-            position: relative;
             a {
                 @include text(1.5rem, pnb, normal, $c-white, uppercase);
                 height: 100%;
-                padding: 0 45px;
+                margin: 0 25px;
+                position: relative;
                 @include flex-align(center);
+                @include hover-bar();
+                &.active::before{
+                    transform: scaleX(1);
+                    transform-origin: center right;
+                    transition: all $t $cubic-bezier;
+                }
             }
-            @include hover-bar();
+            
         }
+    }
+    .right{
+        display: inline-flex;
     }
     .language {
         position: relative;
@@ -46,9 +57,20 @@ header {
                 font-size: 12.5px;
                 font-weight: 600;
             }
-            img {
-                height: 4px;
-                width: 4px;
+            .language__btn{
+                width: 14px;
+                height: 14px;
+                transition: $t $cubic-bezier;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    display: block;
+                }
+                &.click{
+                    transform: rotate(180deg);
+                    transition: $t $cubic-bezier;
+
+                }
             }
         }
         &__list {
@@ -68,36 +90,59 @@ header {
                 text-transform: uppercase;
                 font-weight: 600;
             }
+            &.active{
+                visibility: visible;
+                opacity: 1;
+                top: calc(50% + 10px);
+                transition: all 0.6s;
+            }
         }
-        &__current:hover + .language__list {
-            visibility: visible;
-            opacity: 1;
-            top: calc(50% + 10px);
-            transition: all 0.6s;
-        }
+            
     }
     .btn-menu{
         display: none;
-        width: 50px;
-        height: 100%;
+        width: 40px;
         position: relative;
+        height: 26px;
+        margin-left: 20px;
         span{
             height: 2px;
             width: 100%;
             position: absolute;
-            @include middle-item();
+            @include middle-item-y();
             background: $color-default;
+            transition: $t $cubic-bezier;
         }
         &::before, &::after{
             content: '';
             height: 2px;
             width: 100%;
             background: $color-default;
-            position: absolute;
-            left: 0;
+            display: block;
+            transition: $t $cubic-bezier;
+            transform: translate(0,0) rotate(0);
+            transform-origin: center left;
         }
         &::after{
             bottom: 0;
+            position: absolute;
+        }
+        &.clicked{
+            span{
+                opacity: 0;
+                visibility: hidden;
+                transition: $t $cubic-bezier;
+            }
+            &::before{
+                transform: translate(3px,-3px) rotate(45deg);
+                transform-origin: center left;
+                transition: $t $cubic-bezier;
+            }
+            &::after{
+                transform: translate(2px, 1px) rotate(-45deg);
+                transform-origin: center left;
+                transition: $t $cubic-bezier;
+            }
         }
 
     }
@@ -105,18 +150,10 @@ header {
 
 // responsive
 @media (max-width: 1199px) {
-    .navbar {
-        .menu {
-            &__item {
-                a {
-                    padding: 0 25px;
-                }
-            }
-        }
-    }
+    
 }
 @media (max-width: 991px) {
-    .navbar {
+    .container-fluid {
         .logo {
             width: 150px;
             img {
@@ -126,7 +163,8 @@ header {
         .menu {
             &__item {
                 a {
-                    padding: 0 15px;
+                    padding: initial;
+                    margin: 0 20px;
                     font-size: 1.2rem;
                 }
             }
@@ -139,23 +177,46 @@ header {
             }
         }
     }
+    
 }
 @media (max-width: 767px) {
-    header {
-        height: 50px;
+    :root{
+        --h-header: 50px;
     }
-    .icon {
-        width: 14px;
-    }
-    .navbar {
+    
+    .container-fluid {
         .logo {
             width: 120px;
         }
         .menu {
-            display: none;
+            flex-direction: column;            
+            @include flex(center,center);
+            &__item{
+                height: 50px;
+                a{
+                    font-size: 2rem;
+                }
+            }
         }
         .btn-menu{
             display: block;
+            z-index: 302;
+        }
+        .menu{
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            transform: initial;
+            background: $c-black;
+            top: -100vh;
+            left: 0;
+            z-index: 301;
+            transition: $t $cubic-bezier;
+            &.active{
+                top: 0;
+                transition: $t $cubic-bezier;
+            }
         }
     }
     

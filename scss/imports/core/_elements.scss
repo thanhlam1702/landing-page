@@ -4,14 +4,9 @@ html {
     font-size: 10px;
 }
 
-body{
-    max-width: $max-width;
-    margin: auto;
-    font-family: "pnr";
-}
-
 img{
     vertical-align: middle;
+    max-width: 100%;
 }
 
 a{
@@ -32,7 +27,14 @@ button {
 
 .icon {
     width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
     img{
+        height: 100% ;
+        width: 100%;
+    }
+    svg{
         height: 100% ;
         width: 100%;
     }
