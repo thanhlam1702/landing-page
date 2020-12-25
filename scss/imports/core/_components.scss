@@ -72,6 +72,10 @@
             margin: 0 0 0 12px;
             @include flex-align(center);
         }
+        .icon{
+            width: initial;
+            height: initial;
+        }
         &::before {
             content: "";
             width: 38px;

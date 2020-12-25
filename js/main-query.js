@@ -152,15 +152,15 @@ $(document).ready(function () {
 });
 
 // cursor
-let cursor = $('.cursor');
+// let cursor = $('.cursor');
 
-$(window).on('mousemove', function(e){
-    gsap.to(cursor,{
-        x: e.pageX - (cursor.width() / 2),
-        y: e.pageY - (cursor.height() / 2),
-        duration: 0.2
-    })
-})
+// $(window).on('mousemove', function(e){
+//     gsap.to(cursor,{
+//         x: e.pageX - (cursor.width() / 2),
+//         y: e.pageY - (cursor.height() / 2),
+//         duration: 0.2
+//     })
+// })
 document.querySelectorAll('.--img-box img').forEach(item =>{
     item.addEventListener('mousemove', function(e){
         let x = -(this.clientWidth/2) + (-this.clientWidth + e.offsetX*3)/100
