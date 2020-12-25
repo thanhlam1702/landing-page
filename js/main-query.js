@@ -154,7 +154,6 @@ $(document).ready(function () {
 let cursor = $('.cursor');
 
 $(window).on('mousemove', function(e){
-    console.log('mouser');
     gsap.to(cursor,{
         x: e.pageX - (cursor.width() / 2),
         y: e.pageY - (cursor.height() / 2),
