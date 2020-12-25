@@ -148,6 +148,7 @@ $('.show-list').flickity({
 // img  to svg
 $(document).ready(function () {
     $(".svg").svgToInline();
+
 });
 
 // cursor
@@ -160,3 +161,24 @@ $(window).on('mousemove', function(e){
         duration: 0.2
     })
 })
+document.querySelectorAll('.--img-box img').forEach(item =>{
+    item.addEventListener('mousemove', function(e){
+        let x = -(this.clientWidth/2) + (-this.clientWidth + e.offsetX*3)/100
+        let y = -(this.clientHeight/2) + (-this.clientHeight + e.offsetY*3)/100
+        
+        this.style.transform = `translateX(${x}px) translateY(${y}px)`;
+    
+    })
+})
+
+document.querySelectorAll('.--img-box img').forEach(item => {
+    item.addEventListener('mouseleave', function(e){
+        this.style.transform = `translateX(-50%) translateY(-50%)`;
+    
+    })
+})
+
+
+
+
+
