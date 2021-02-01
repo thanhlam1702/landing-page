@@ -149,10 +149,10 @@ $('.show-list').flickity({
     // freeScroll: true
 })
 // img  to svg
-$(document).ready(function () {
-    $(".svg").svgToInline();
+// $(document).ready(function () {
+//     $(".icon-svg").svgToInline();
 
-});
+// });
 
 // cursor
 // let cursor = $('.cursor');
@@ -166,11 +166,23 @@ $(document).ready(function () {
 // })
 document.querySelectorAll('.--img-box img').forEach(item =>{
     item.addEventListener('mousemove', function(e){
-        let x = -(this.clientWidth/2) + (-this.clientWidth + e.offsetX*3)/100
-        let y = -(this.clientHeight/2) + (-this.clientHeight + e.offsetY*3)/100
         
-        this.style.transform = `translateX(${x}px) translateY(${y}px)`;
-    
+        let posX = -(((this.clientWidth/2) - e.offsetX)*5)/100
+        let posY = -(((this.clientHeight/2) - e.offsetY)*5)/100
+        gsap.to(item, {
+            x: posX,
+            y: posY,
+            scale: 1.1,
+            duration: 1,
+        })
+    })
+    item.addEventListener('mouseleave', function(){
+        gsap.to(item, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 1,
+        })
     })
 })
 

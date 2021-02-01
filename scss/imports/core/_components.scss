@@ -23,23 +23,10 @@
         overflow: hidden;
         transition: all $t $cubic-bezier;
         img {
-            min-width: 100%;
-            min-height: 100%;
             max-width: var(--wProductImg);
             position: absolute;
             object-fit: cover;
-            top: 50%;
-            left: 50%;
-            // transition: all $t $cubic-bezier;
             @include middle-item();
-        }
-        &:hover {
-            // transform: scale(0.9);
-            // transition: all $t $cubic-bezier;
-        }
-        &:hover img {
-            // transform: translate(-50%, -50%) scale(1.2);
-            // transition: all $t $cubic-bezier;
         }
     }
 }
